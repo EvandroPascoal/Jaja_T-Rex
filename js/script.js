@@ -1,4 +1,5 @@
 const mario = document.querySelector('.mario');
+
 const pipe = document.querySelector('.pipe');
 
 
@@ -40,9 +41,5 @@ const loop = setInterval(() => {
 
 }, 10);
 
-ocument.addEventListener('keydown', jump);
+document.addEventListener('keydown', jump);
 document.addEventListener('touchstart', jump);
-
-
-
-

@@ -1,46 +1,43 @@
-const mario = document.querySelector('.mario');
 
+const mario = document.querySelector('.mario');
 const pipe = document.querySelector('.pipe');
 
-
 const jump = () => {
-   mario.classList.add('jump');
+  mario.classList.add('jump');
 
-   setTimeout (() => {
-
+  setTimeout(() => {
     mario.classList.remove('jump');
-
-
-   }, 500);
-
+  }, 500);
 }
+
 const loop = setInterval(() => {
 
-   console.log('loop')
+  const pipePosition = pipe.offsetLeft;
+  const marioPosition = +window.getComputedStyle(mario).bottom.replace('px', '');
 
-    const pipePosition = pipe.offsetLeft;
-    const marioPosition = +window.getComputedStyle(mario).bottom.replace('px', '');
+  if (pipePosition <= 120 && pipePosition > 0 && marioPosition < 80) {
 
-     console. log(marioPosition);
+    pipe.style.animation = 'none';
+    pipe.style.left = `${pipePosition}px`;
 
-    if (pipePosition <= 120 && pipePosition > 0 && marioPosition < 80) {
+    mario.style.animation = 'none';
+    mario.style.bottom = `${marioPosition}px`;
 
-       pipe.style.animation = 'none';
-       pipe.style.left = '${pipePosition}px';
+    mario.src = './img/Braço.png';
+    mario.style.width = '125px';
+    mario.style.marginLeft = '50px';
 
-       mario.style.animation = 'none';
-       mario.style.bottom = '${marioPosition}px';
-
-       mario.src = './img/Braço.png';
-       mario.style.width = '125px';
-       mario.style.marginLeft = '50px';
-       
-
-       clearInterval(loop);
-    }
+    clearInterval(loop);
+  }
 
 }, 10);
 
+// Pulo pelo teclado (qualquer tecla)
 document.addEventListener('keydown', jump);
+
+// Pulo por clique/tela (funciona em celular)
+document.addEventListener('click', jump);
+document.addEventListener('touchstart', jump);
+
 
 
